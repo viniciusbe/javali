@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db0180b9-0d20-4366-bf26-3afee74f2d64" name="Changes" comment="Exceptions treatment">
+    <list default="true" id="db0180b9-0d20-4366-bf26-3afee74f2d64" name="Changes" comment="Date">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -67,7 +67,8 @@
       <option name="presentableId" value="Default" />
       <updated>1685104148507</updated>
       <workItem from="1685104149512" duration="7176000" />
-      <workItem from="1685211818576" duration="7261000" />
+      <workItem from="1685211818576" duration="7875000" />
+      <workItem from="1685290577866" duration="1713000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1685104435230</created>
@@ -83,7 +84,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685216075259</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Date">
+      <created>1685244649380</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685244649380</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,6 +100,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Exceptions treatment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Exceptions treatment" />
+    <MESSAGE value="Date" />
+    <option name="LAST_COMMIT_MESSAGE" value="Date" />
   </component>
 </project>

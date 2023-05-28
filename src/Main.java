@@ -3,11 +3,9 @@ import model.exceptions.DomainException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -38,19 +36,35 @@ public class Main {
         LocalDate localDate3 = LocalDate.of(2022, 7, 20);
         LocalDateTime localDateTime3 = LocalDateTime.of(2022, 7, 20,1,30);
 
-        // format to string
+        // formatting to string
         String localDateToFmt1 = localDate3.format(fmt1);
         String localDateTimeToFmt2 = localDateTime3.format(fmt2);
         String instantToFmt3 = fmt3.format(instant1);
 
-        // convert instant to LocalDate
+        // converting instant to LocalDate
         LocalDate instantToLocalDate = LocalDate.ofInstant(instant1, ZoneId.of("Portugal"));
         LocalDateTime instantToLocalDateTime = LocalDateTime.ofInstant(instant1, ZoneId.of("Portugal"));
 
+        // getting info
         int dayOfMonth = instantToLocalDate.getDayOfMonth();
         int month = instantToLocalDate.getMonthValue();
         int year = instantToLocalDate.getYear();
-        System.out.println(year);
+
+        // changing date-time
+        LocalDate pastWeekLocalDate = localDate3.minusDays(7);
+        LocalDate nextWeekLocalDate = localDate3.plusDays(7);
+        LocalDateTime nextHourLocalDateTime = localDateTime3.plusHours(1);
+        Instant pastWeekInstant = instant1.minus(7, ChronoUnit.DAYS);
+
+        // LocalDate to LocalDateTime
+        LocalDateTime d1 = pastWeekLocalDate.atStartOfDay();
+        LocalDateTime d2 = localDate3.atTime(1, 30);
+
+        Duration t1 = Duration.between(localDateTime3, nextHourLocalDateTime);
+        Duration t2 = Duration.between(d1, d2);
+        Duration t3 = Duration.between(pastWeekInstant,instant1);
+
+        System.out.println(t3.toDays());
 
     }
 
