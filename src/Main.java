@@ -1,18 +1,62 @@
 import model.entities.Reservation;
 import model.exceptions.DomainException;
 
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 //        exceptions();
+//        dates();
+        files();
 
+    }
+
+    public static void exceptions() {
+        Scanner sc = new Scanner(System.in);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            System.out.print("Room number: ");
+            int number = sc.nextInt();
+
+            System.out.print("Check-in date (dd/MM/yyyy): ");
+            Date checkIn = sdf.parse(sc.next());
+
+            System.out.print("Check-out date (dd/MM/yyyy): ");
+            Date checkOut = sdf.parse(sc.next());
+
+            Reservation reservation = new Reservation(number, checkIn, checkOut);
+            System.out.println("Reservation: " + reservation);
+
+            System.out.println("Enter data to update the reservation");
+            System.out.print("Check-in date (dd/MM/yyyy): ");
+            checkIn = sdf.parse(sc.next());
+
+            System.out.print("Check-out date (dd/MM/yyyy): ");
+            checkOut = sdf.parse(sc.next());
+
+            reservation.updateDates(checkIn, checkOut);
+            System.out.println("Reservation: " + reservation);
+        } catch (ParseException e) {
+            System.out.println("Invalid date format");
+        } catch (DomainException e) {
+            System.out.println("Error in reservation: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("Unexpected error");
+        }
+
+        sc.close();
+    }
+
+    public static void dates() {
         DateTimeFormatter fmt1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter fmt2 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         DateTimeFormatter fmt3 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").withZone(ZoneId.systemDefault());
@@ -65,43 +109,61 @@ public class Main {
         Duration t3 = Duration.between(pastWeekInstant,instant1);
 
         System.out.println(t3.toDays());
-
     }
 
-    public static void exceptions() {
-        Scanner sc = new Scanner(System.in);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    public static void files() {
+//        File file = new File("./in.txt");
+//        Scanner sc = null;
+//
+//        try {
+//            sc = new Scanner(file);
+//            while (sc.hasNextLine()) {
+//                System.out.println(sc.nextLine());
+//            }
+//        } catch (IOException e) {
+//            System.out.println("Error: " + e.getMessage());
+//        } finally {
+//            if (sc != null) {
+//                sc.close();
+//            }
+//        }
 
-        try {
-            System.out.print("Room number: ");
-            int number = sc.nextInt();
+//        String path = "./in.txt";
+//
+//        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+//            String line = br.readLine();
+//            while (line != null) {
+//                System.out.println(line);
+//                line = br.readLine();
+//            }
+//
+//        } catch (IOException e) {
+//            System.out.println("Error: " + e.getMessage());
+//        }
 
-            System.out.print("Check-in date (dd/MM/yyyy): ");
-            Date checkIn = sdf.parse(sc.next());
+//        String[] lines = new String[] {"Good morning", "Good afternoon","Good night"};
+//
+//        String path = "./out.txt";
+//
+//        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path,true))) {
+//            for (String line : lines) {
+//                bw.write(line);
+//                bw.newLine();
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-            System.out.print("Check-out date (dd/MM/yyyy): ");
-            Date checkOut = sdf.parse(sc.next());
 
-            Reservation reservation = new Reservation(number, checkIn, checkOut);
-            System.out.println("Reservation: " + reservation);
+        File path = new File("./");
 
-            System.out.println("Enter data to update the reservation");
-            System.out.print("Check-in date (dd/MM/yyyy): ");
-            checkIn = sdf.parse(sc.next());
+        File[] folders = path.listFiles(File::isDirectory);
 
-            System.out.print("Check-out date (dd/MM/yyyy): ");
-            checkOut = sdf.parse(sc.next());
+        File[] files = path.listFiles(File::isFile);
+        Arrays.stream(files).forEach(System.out::println);
 
-            reservation.updateDates(checkIn, checkOut);
-            System.out.println("Reservation: " + reservation);
-        } catch (ParseException e) {
-            System.out.println("Invalid date format");
-        } catch (DomainException e) {
-            System.out.println("Error in reservation: " + e.getMessage());
-        } catch (RuntimeException e) {
-            System.out.println("Unexpected error");
-        }
+//        new File("./" + "newDir").mkdir();
 
-        sc.close();
+
     }
 }
